@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-m0&gahw!mee^+%#dil)4vczjs6)-=b$3hj+yy4iq@ge-0ig0(5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['lumoraevents.onrender.com']
 
