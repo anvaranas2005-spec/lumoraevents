@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+  <link rel="stylesheet" as="style" onload="this.rel='stylesheet'"
+    href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Work+Sans%3Awght%40400%3B500%3B700%3B900" />
+  <title>Terms of Service - Lumora Events</title>
+  <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style>
+    ol.legal-list {
+      counter-reset: section;
+      list-style-type: none;
+    }
+    ol.legal-list > li {
+      counter-increment: section;
+      margin-bottom: 1.5rem;
+    }
+    ol.legal-list > li:before {
+      content: counters(section, ".") ". ";
+      font-weight: bold;
+    }
+    ol.legal-sublist {
+      list-style-type: lower-alpha;
+      padding-left: 1.5rem;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body class="bg-gray-50" style='font-family: "Work Sans", "Noto Sans", sans-serif;'>
+  <div class="relative flex size-full min-h-screen flex-col bg-gray-50 group/design-root overflow-x-hidden">
+    <div class="layout-container flex h-full grow flex-col">
+      <!-- Navigation Bar -->
+      <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e9edf1] px-6 py-3 md:px-10">
+        <div class="flex items-center gap-4 text-[#101519]">
+          <a href="index.html" class="flex items-center gap-4">
+            <div class="size-4">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z"
+                  fill="currentColor"></path>
+              </svg>
+            </div>
+            <h2 class="text-[#101519] text-lg font-bold leading-tight tracking-[-0.015em]">Lumora Events</h2>
+          </a>
+        </div>
+
+        <div class="flex flex-1 justify-end gap-6 md:gap-8">
+          <nav class="hidden md:flex items-center gap-6 lg:gap-9">
+            <a class="text-[#101519] text-sm font-medium leading-normal hover:text-blue-600 transition-colors" href="{% url 'home' %}">Home</a>
+            <a class="text-[#101519] text-sm font-medium leading-normal hover:text-blue-600 transition-colors" href="{% url 'services' %}">Services</a>
+            <a class="text-[#101519] text-sm font-medium leading-normal hover:text-blue-600 transition-colors" href="portfolio.html">Portfolio</a>
+            <a class="text-[#101519] text-sm font-medium leading-normal hover:text-blue-600 transition-colors" href="{% url 'about' %}">About Us</a>
+            <a class="text-[#101519] text-sm font-medium leading-normal hover:text-blue-600 transition-colors" href="{% url 'contact' %}">Contact</a>
+          </nav>
+
+          <button class="md:hidden text-[#101519]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+
+          <a href="contact.html" class="hidden md:flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#bfd6ec] text-[#101519] text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#a8c5e0] transition-colors">
+            <span class="truncate">Get a Quote</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <div class="px-6 md:px-10 lg:px-20 xl:px-40 py-8 max-w-7xl mx-auto">
+        <div class="bg-white rounded-xl shadow-sm p-6 md:p-10">
+          <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Terms of Service</h1>
+          <p class="text-gray-600 mb-8">Last Updated: January 1, 2024</p>
+
+          <div class="prose max-w-none text-gray-700">
+            <p class="mb-6">Welcome to Lumora Events. These Terms of Service ("Terms") govern your use of our website and services. By accessing or using our services, you agree to be bound by these Terms.</p>
+
+            <ol class="legal-list space-y-8">
+              <li>
+                <h2 class="text-xl font-bold text-gray-900 mb-2">Definitions</h2>
+                <p>In these Terms:</p>
+                <ol class="legal-sublist">
+                  <li>"Company", "We", "Us" or "Our" refers to Lumora Events.</li>
+                  <li>"Services" refers to all event planning and management services offered by Lumora Events.</li>
+                  <li>"Client", "You" or "Your" refers to the individual or entity using our Services.</li>
+                </ol>
+              </li>
+
+              <li>
+                <h2 class="text-xl font-bold text-gray-900 mb-2">Services Agreement</h2>
+                <ol class="legal-sublist">
+                  <li>All services are subject to availability and our acceptance of your booking.</li>
+                  <li>We reserve the right to refuse service to anyone for any reason at any time.</li>
+                  <li>Specific event details will be outlined in a separate Event Contract.</li>
+                </ol>
+              </li>
+
+              <li>
+                <h2 class="text-xl font-bold text-gray-900 mb-2">Payments and Cancellations</h2>
+                <ol class="legal-sublist">
+                  <li>A non-refundable deposit of 30% is required to secure your event date.</li>
+                  <li>Final payment is due 14 days prior to the event date.</li>
+                  <li>Cancellations made within 30 days of the event will incur a 50% cancellation fee.</li>
+                  <li>No refunds will be issued for cancellations made within 14 days of the event.</li>
+                </ol>
+              </li>
+
+              <li>
+                <h2 class="text-xl font-bold text-gray-900 mb-2">Client Responsibilities</h2>
+                <ol class="legal-sublist">
+                  <li>You agree to provide accurate and complete information about your event requirements.</li>
+                  <li>You are responsible for obtaining any necessary permits or licenses for your event.</li>
+                  <li>You agree to conduct yourself and ensure your guests conduct themselves in a professional manner.</li>
+                </ol>
+              </li>
+
+              <li>
+                <h2 class="text-xl font-bold text-gray-900 mb-2">Intellectual Property</h2>
+                <ol class="legal-sublist">
+                  <li>All content on our website and marketing materials is our exclusive property.</li>
+                  <li>You may not use our trademarks, logos, or branding without our written permission.</li>
+                  <li>We retain ownership of all event designs and concepts we create.</li>
+                </ol>
+              </li>
+
+              <li>
+                <h2 class="text-xl font-bold text-gray-900 mb-2">Limitation of Liability</h2>
+                <ol class="legal-sublist">
+                  <li>We are not liable for any indirect, incidental, or consequential damages.</li>
+                  <li>Our total liability for any claim related to our services is limited to the amount you paid for those services.</li>
+                  <li>We are not responsible for circumstances beyond our control (force majeure).</li>
+                </ol>
+              </li>
+
+              <li>
+                <h2 class="text-xl font-bold text-gray-900 mb-2">Indemnification</h2>
+                <p>You agree to indemnify and hold harmless Lumora Events from any claims arising from your use of our services or your breach of these Terms.</p>
+              </li>
+
+              <li>
+                <h2 class="text-xl font-bold text-gray-900 mb-2">Governing Law</h2>
+                <p>These Terms shall be governed by and construed in accordance with the laws of [Your State/Country], without regard to its conflict of law provisions.</p>
+              </li>
+
+              <li>
+                <h2 class="text-xl font-bold text-gray-900 mb-2">Changes to Terms</h2>
+                <p>We reserve the right to modify these Terms at any time. Your continued use of our services constitutes acceptance of the modified Terms.</p>
+              </li>
+
+              <li>
+                <h2 class="text-xl font-bold text-gray-900 mb-2">Contact Information</h2>
+                <p>For questions about these Terms, please contact us at:</p>
+                <address class="not-italic mt-2">
+                  Lumora Events<br>
+                  Kollengode, Palakkad, Kerala<br>
+                  Email: lumoraevents@gmail.com<br>
+                  Phone: (+91) 96455 79514
+                </address>
+              </li>
+            </ol>
+
+            <!-- Back to Home Button -->
+            <div class="mt-12 text-center">
+              <a href="{% url 'home' %}" class="inline-flex items-center px-6 py-3 bg-[#bfd6ec] text-[#101519] font-bold rounded-xl hover:bg-[#a8c5e0] transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+                Back to Home
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="flex justify-center bg-gray-100 mt-12">
+        <div class="flex max-w-7xl flex-1 flex-col px-6 md:px-10">
+          <div class="flex flex-col gap-6 py-10">
+            <div class="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+              <a class="text-[#5a748c] text-sm md:text-base font-normal leading-normal hover:text-blue-600 transition-colors" href="{% url 'home' %}">Home</a>
+              <a class="text-[#5a748c] text-sm md:text-base font-normal leading-normal hover:text-blue-600 transition-colors" href="{% url 'services' %}">Services</a>
+              <a class="text-[#5a748c] text-sm md:text-base font-normal leading-normal hover:text-blue-600 transition-colors" href="portfolio.html">Portfolio</a>
+              <a class="text-[#5a748c] text-sm md:text-base font-normal leading-normal hover:text-blue-600 transition-colors" href="{% url 'about' %}">About Us</a>
+              <a class="text-[#5a748c] text-sm md:text-base font-normal leading-normal hover:text-blue-600 transition-colors" href="{% url 'contact' %}">Contact</a>
+            </div>
+            <p class="text-[#5a748c] text-sm md:text-base font-normal leading-normal text-center">© 2024 Lumora Events. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Toggle Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenuButton = document.querySelector('header button.md\\:hidden');
+      const mobileMenu = document.createElement('div');
+      mobileMenu.className = 'md:hidden bg-white shadow-md py-2 px-4 hidden absolute w-full z-10';
+      mobileMenu.innerHTML = `
+        <a class="block py-2 text-[#101519] hover:text-blue-600" href="index.html">Home</a>
+        <a class="block py-2 text-[#101519] hover:text-blue-600" href="services.html">Services</a>
+        <a class="block py-2 text-[#101519] hover:text-blue-600" href="portfolio.html">Portfolio</a>
+        <a class="block py-2 text-[#101519] hover:text-blue-600" href="about.html">About Us</a>
+        <a class="block py-2 text-[#101519] hover:text-blue-600" href="contact.html">Contact</a>
+        <a href="contact.html" class="block w-full text-center mt-2 py-2 rounded-xl bg-[#bfd6ec] text-[#101519] font-bold">
+          Get a Quote
+        </a>
+      `;
+      document.querySelector('.layout-container').insertBefore(mobileMenu, document.querySelector('.layout-container > div:not(header)'));
+
+      mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+      });
+    });
+  </script>
+</body>
+</html>

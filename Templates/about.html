@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+  <link rel="stylesheet" as="style" onload="this.rel='stylesheet'"
+    href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Work+Sans%3Awght%40400%3B500%3B700%3B900" />
+  <title>Lumora Events - About Us</title>
+  <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+<body class="bg-gray-50" style='font-family: "Work Sans", "Noto Sans", sans-serif;'>
+  <div class="relative flex size-full min-h-screen flex-col bg-gray-50 group/design-root overflow-x-hidden">
+    <div class="layout-container flex h-full grow flex-col">
+      <!-- Navigation Bar -->
+      <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e9edf1] px-6 py-3 md:px-10">
+        <div class="flex items-center gap-4 text-[#101519]">
+          <a href="#" class="flex items-center gap-4">
+            <div class="size-4">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z"
+                  fill="currentColor"></path>
+              </svg>
+            </div>
+            <h2 class="text-[#101519] text-lg font-bold leading-tight tracking-[-0.015em]">Lumora Events</h2>
+          </a>
+        </div>
+
+        <div class="flex flex-1 justify-end gap-6 md:gap-8">
+          <nav class="hidden md:flex items-center gap-6 lg:gap-9">
+            <a class="text-[#101519] text-sm font-medium leading-normal hover:text-blue-600 transition-colors" href="{% url 'home' %}">Home</a>
+            <a class="text-[#101519] text-sm font-medium leading-normal hover:text-blue-600 transition-colors" href="{% url 'services' %}">Services</a>
+            <a class="text-[#101519] text-sm font-medium leading-normal text-blue-600 font-semibold hover:text-blue-700 transition-colors" href="{% url 'about' %}">About Us</a>
+            <a class="text-[#101519] text-sm font-medium leading-normal hover:text-blue-600 transition-colors" href="{% url 'portfolio' %}">portfolio</a>
+            <a class="text-[#101519] text-sm font-medium leading-normal hover:text-blue-600 transition-colors" href="{% url 'contact' %}">Contact</a>
+          </nav>
+
+          <button class="md:hidden text-[#101519]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+
+          <a href="{% url 'login' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#bfd6ec] text-[#101519] text-sm font-bold leading-normal tracking-[0.015em]">
+              <span class="truncate">Get Started</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- Mobile Menu (hidden by default) -->
+      <div class="md:hidden bg-white shadow-md py-2 px-4 hidden">
+        <a class="block py-2 text-[#101519] hover:text-blue-600" href="{% url 'home' %}">Home</a>
+        <a class="block py-2 text-[#101519] hover:text-blue-600" href="{% url 'services' %}">Services</a>
+        <a class="block py-2 text-blue-600 font-medium" href="{% url 'about' %}">About Us</a>
+        <a class="block py-2 text-[#101519] hover:text-blue-600" href="{% url 'contact' %}">Contact</a>
+        <a href="#" class="block w-full text-center mt-2 py-2 rounded-xl bg-[#bfd6ec] text-[#101519] font-bold">
+          Get a Quote
+        </a>
+      </div>
+
+      <!-- Main Content -->
+      <div class="px-6 md:px-40 flex flex-1 justify-center py-5">
+        <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+          <!-- Page Header -->
+          <div class="flex flex-wrap justify-between gap-3 p-4">
+            <h1 class="text-[#101519] text-3xl md:text-[32px] font-bold leading-tight min-w-72">About Lumora Events</h1>
+          </div>
+
+          <!-- About Content -->
+          <div class="space-y-6">
+            <section>
+              <p class="text-[#101519] text-base font-normal leading-normal pb-3 pt-1 px-4">
+                Lumora Events is a premier event management company dedicated to creating unforgettable experiences for our clients. With a passion for detail and a commitment to
+                excellence, we specialize in corporate events, social gatherings, and everything in between. Our team of experienced professionals works closely with each client to
+                understand their vision and bring it to life with creativity and precision.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-[#101519] text-xl md:text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Our Mission</h2>
+              <p class="text-[#101519] text-base font-normal leading-normal pb-3 pt-1 px-4">
+                Our mission is to transform your event dreams into reality. We strive to exceed expectations by delivering seamless, innovative, and memorable events that reflect
+                your unique style and objectives. From concept to execution, we handle every detail with care, ensuring a stress-free and enjoyable experience for our clients.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-[#101519] text-xl md:text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Our Values</h2>
+              <ul class="text-[#101519] text-base font-normal leading-normal pb-3 pt-1 px-4 list-disc pl-6 space-y-2">
+                <li><strong>Excellence:</strong> We are committed to delivering the highest quality in every aspect of our work.</li>
+                <li><strong>Creativity:</strong> We bring fresh ideas and innovative solutions to every event.</li>
+                <li><strong>Integrity:</strong> We operate with honesty, transparency, and respect in all our interactions.</li>
+                <li><strong>Collaboration:</strong> We work closely with our clients and partners to achieve shared success.</li>
+                <li><strong>Passion:</strong> We are passionate about creating exceptional events and making a positive impact.</li>
+              </ul>
+            </section>
+
+            <!-- Team Section -->
+            <section>
+              <h2 class="text-[#101519] text-xl md:text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Meet Our Team</h2>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4">
+                <!-- Team Member 1 -->
+                <div class="flex flex-col items-center gap-3 text-center">
+                  <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden bg-gray-200">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNZrxzcEI2TpfyeLgDocopcNxlYT_fepkGw7rC48KbxiUr4M8e-TLCkZ9aRtqmOctLTmA_ajoQbdVSRQdW3dPJiNtt9ANcjPQhOeD9Yz1sV7O5knZ-ydtcuMpRkxwpBd2Jgdi7wkVD8nRgR12Hu1wo4CFNB8VPnKx0A7gyDojLrm_irCnRxrjsMC1roa8V2kQdu1f_EGoLClhyiX71P4A7tI60bXvdvgCQ5j9eaxNtVmtT2JiVwHs-h_vQLwIqy37lHSv6G5bvJbPe"
+                         alt="Sarah Johnson"
+                         class="w-full h-full object-cover">
+                  </div>
+                  <div>
+                    <p class="text-[#101519] text-base font-medium leading-normal">Sarah Johnson</p>
+                    <p class="text-[#5a748c] text-sm font-normal leading-normal">Founder & CEO</p>
+                  </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="flex flex-col items-center gap-3 text-center">
+                  <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden bg-gray-200">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAdHsiWt-sc61EfXPlXyj-0CIpgZvmtFuKT4sf9Qwm5wt8IcNX39IyJHaLcYLqXWHQZfkfr5nfLjlNHS9TfXbCTsjO9wYl5xWG88ta7NXDcX3_JJKnqymaa_w_P6VCbj4_9u7n-d0E0BHaIvWXxGl7Lu9C0TW5KtoVCyH_ygYTjAkQT1QR2sF_d6xIbA5z8VYzkUFwgh2tMYbyVWHcR-GqqgHzPukBAdbiIgL_pku8I-OoWRr9d0GQGILikn6ModzqtMVjtDyLtZ5c"
+                         alt="Michael Chen"
+                         class="w-full h-full object-cover">
+                  </div>
+                  <div>
+                    <p class="text-[#101519] text-base font-medium leading-normal">Michael Chen</p>
+                    <p class="text-[#5a748c] text-sm font-normal leading-normal">Lead Event Planner</p>
+                  </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="flex flex-col items-center gap-3 text-center">
+                  <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden bg-gray-200">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDx00JCbjZz62iJso_Ys_QsN6wzTVuwCCsYGT40sA3RvHXX20uLeMbnY6MQZsPyqWDqNft6YlU8xSk3pAHwh4EeFEt4Dy-uLDBvHuw7LuKn3UG4ZkH20wKnZbU1groaLVeIrQfCGjlw1KIoZTcl4sB44D5tzf2912b2M_BaDnTDFDGVFJsq2n76Mt9uBpB09-9SVbuqPiSLD-myFMd0z03u5tKbjZPLUODa0a3RBv6P8QtzPaIo3-eTIzX9fpUrINTpnApzQQfCARBf"
+                         alt="Emily Davis"
+                         class="w-full h-full object-cover">
+                  </div>
+                  <div>
+                    <p class="text-[#101519] text-base font-medium leading-normal">Emily Davis</p>
+                    <p class="text-[#5a748c] text-sm font-normal leading-normal">Creative Director</p>
+                  </div>
+                </div>
+              </div>
+
+              <p class="text-[#101519] text-base font-normal leading-normal pb-3 pt-1 px-4">
+                Our team is composed of talented and dedicated professionals with extensive experience in event planning and execution. We bring a diverse range of skills and
+                perspectives to every project, ensuring a comprehensive and creative approach. We are passionate about what we do and committed to making your event a success.
+              </p>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="flex justify-center bg-gray-100">
+        <div class="flex max-w-[960px] flex-1 flex-col">
+          <div class="flex flex-col gap-6 px-5 py-10 text-center">
+            <div class="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+              <a class="text-[#5a748c] text-sm md:text-base font-normal leading-normal hover:text-blue-600 transition-colors" href="{% url 'home' %}">Home</a>
+              <a class="text-[#5a748c] text-sm md:text-base font-normal leading-normal hover:text-blue-600 transition-colors" href="{% url 'services' %}">Services</a>
+              <a class="text-[#5a748c] text-sm md:text-base font-normal leading-normal hover:text-blue-600 transition-colors" href="{% url 'about' %}">About Us</a>
+              <a class="text-[#5a748c] text-sm md:text-base font-normal leading-normal hover:text-blue-600 transition-colors" href="{% url 'contact' %}">Contact</a>
+            </div>
+            <p class="text-[#5a748c] text-sm md:text-base font-normal leading-normal">© 2024 Lumora Events. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Simple JavaScript for mobile menu toggle -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenuButton = document.querySelector('header button.md\\:hidden');
+      const mobileMenu = document.querySelector('div.md\\:hidden.bg-white');
+
+      mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+      });
+    });
+  </script>
+</body>
+</html>

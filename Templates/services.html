@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+  <link
+    rel="stylesheet"
+    as="style"
+    onload="this.rel='stylesheet'"
+    href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Work+Sans%3Awght%40400%3B500%3B700%3B900"
+  />
+  <title>Lumora Events - Services</title>
+  <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+<body class="bg-gray-50" style='font-family: "Work Sans", "Noto Sans", sans-serif;'>
+  <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e9edf1] px-10 py-3">
+  <div class="flex items-center gap-4 text-[#101519]">
+    <div class="size-4">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z"
+          fill="currentColor"
+        ></path>
+      </svg>
+    </div>
+    <h2 class="text-[#101519] text-lg font-bold leading-tight tracking-[-0.015em]">Lumora Events</h2>
+  </div>
+  <div class="flex flex-1 justify-end gap-8">
+    <div class="flex items-center gap-9">
+      <a class="text-[#101519] text-sm font-medium leading-normal" href="{% url 'home' %}">Home</a>
+      <a class="text-[#101519] text-sm font-medium leading-normal" href="{% url 'services' %}">Services</a>
+      <a class="text-[#101519] text-sm font-medium leading-normal" href="{% url 'about' %}">About</a>
+      <a class="text-[#101519] text-sm font-medium leading-normal" href="{% url 'portfolio' %}">Portfolio</a>
+      <a class="text-[#101519] text-sm font-medium leading-normal" href="{% url 'contact' %}">Contact</a>
+    </div>
+    <a href="{% url 'login' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#bfd6ec] text-[#101519] text-sm font-bold leading-normal tracking-[0.015em]">
+      <span class="truncate">Get Started</span>
+    </a>
+  </div>
+</header>
+
+  <main class="px-10 py-8 max-w-7xl mx-auto">
+    <!-- Hero Section -->
+    <section class="mb-16">
+      <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 md:p-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Our Services</h1>
+        <p class="text-lg text-gray-600 max-w-2xl">
+          Discover how Lumora Events can transform your corporate and social gatherings into unforgettable experiences.
+        </p>
+      </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="mb-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for service in services %}
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+          {% if service.image %}
+          <div class="h-48 overflow-hidden">
+            <img src="{{ service.image.url }}" alt="{{ service.title }}" class="w-full h-full object-cover">
+          </div>
+          {% endif %}
+          <div class="p-6">
+            <div class="flex items-center mb-4">
+              <div class="text-blue-500 text-2xl mr-3">
+                <i class="{{ service.icon_name }}"></i>
+              </div>
+              <h3 class="text-xl font-bold text-gray-800">{{ service.title }}</h3>
+            </div>
+            <p class="text-gray-600 mb-4">{{ service.description }}</p>
+
+            <!-- Price Display -->
+            <div class="mb-4">
+              <span class="text-lg font-semibold text-blue-600">
+                {{ service.display_price }}
+              </span>
+            </div>
+
+            <!-- Button (conditionally shown) -->
+            {% if service.show_button %}
+            <a href="{% url 'contact' %}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">
+              Book Now
+            </a>
+            {% endif %}
+          </div>
+        </div>
+        {% empty %}
+        <div class="col-span-3 text-center py-12">
+          <p class="text-gray-500">No services available at the moment. Please check back later.</p>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-blue-600 rounded-2xl p-8 md:p-12 text-center">
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Ready to elevate your event?</h2>
+      <p class="text-blue-100 mb-6 max-w-2xl mx-auto">
+        Contact us today to discuss how we can make your next event extraordinary.
+      </p>
+      <a href="{% url 'contact' %}" class="inline-block bg-white text-blue-600 font-bold py-3 px-6 rounded-lg hover:bg-blue-50 transition-colors duration-300">
+        Get in Touch
+      </a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 py-12">
+    <div class="max-w-7xl mx-auto px-10">
+      <div class="text-center">
+        <p class="text-gray-600">&copy; 2025 Lumora Events. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

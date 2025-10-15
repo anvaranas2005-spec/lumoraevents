@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+  <link
+    rel="stylesheet"
+    as="style"
+    onload="this.rel='stylesheet'"
+    href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Work+Sans%3Awght%40400%3B500%3B700%3B900"
+  />
+  <title>Book Service - Lumora Events</title>
+  <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style>
+    /* Custom form styling to match your design */
+    input, textarea, select {
+      @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200;
+    }
+    input[type="checkbox"] {
+      @apply w-5 h-5 text-blue-600 rounded focus:ring-blue-500;
+    }
+    .errorlist {
+      @apply text-red-500 text-sm mt-1;
+    }
+  </style>
+</head>
+<body class="bg-gray-50" style='font-family: "Work Sans", "Noto Sans", sans-serif;'>
+  <!-- Same header as your services.html -->
+  <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e9edf1] px-10 py-3">
+    <div class="flex items-center gap-4 text-[#101519]">
+      <div class="size-4">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+      </div>
+      <h2 class="text-[#101519] text-lg font-bold leading-tight tracking-[-0.015em]">Lumora Events</h2>
+    </div>
+    <div class="flex flex-1 justify-end gap-8">
+      <div class="flex items-center gap-9">
+        <a class="text-[#101519] text-sm font-medium leading-normal" href="{% url 'user_dashboard' %}">Dashboard</a>
+        <a class="text-[#101519] text-sm font-medium leading-normal" href="{% url 'user_services' %}">Services</a>
+        <a class="text-[#101519] text-sm font-medium leading-normal" href="{% url 'user_about' %}">About</a>
+        <a class="text-[#101519] text-sm font-medium leading-normal" href="{% url 'user_portfolio' %}">Portfolio</a>
+      </div>
+      <a href="{% url 'logout' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#bfd6ec] text-[#101519] text-sm font-bold leading-normal tracking-[0.015em]">
+        <span class="truncate">Logout</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="px-10 py-8 max-w-3xl mx-auto">
+    <section class="mb-16">
+      <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 md:p-12">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Book Your Service</h1>
+        {% if service_title %}
+        <p class="text-lg text-blue-600 font-medium">Service: {{ service_title }}</p>
+        {% endif %}
+      </div>
+    </section>
+
+    <section class="bg-white rounded-2xl shadow-md p-8 mb-12">
+      <form method="post">
+        {% csrf_token %}
+
+        {% if form.errors %}
+        <div class="mb-6 p-4 bg-red-50 rounded-lg">
+          <h3 class="text-red-800 font-medium">Please correct the errors below:</h3>
+          <ul class="mt-2 text-red-600">
+            {% for field, errors in form.errors.items %}
+              {% for error in errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <!-- Service Info -->
+          <div class="md:col-span-2">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Service Details</h3>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-gray-700 text-sm font-medium mb-1">Service Name</label>
+                <input type="text" name="service_name" value="{{ form.service_name.value|default:'' }}"
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                       readonly>
+              </div>
+            </div>
+          </div>
+
+          <!-- Personal Info -->
+          <div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Your Information</h3>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-gray-700 text-sm font-medium mb-1">Full Name</label>
+                {{ form.name }}
+                {% if form.name.errors %}
+                <div class="text-red-500 text-xs mt-1">{{ form.name.errors }}</div>
+                {% endif %}
+              </div>
+              <div>
+                <label class="block text-gray-700 text-sm font-medium mb-1">Email</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                <div class="text-red-500 text-xs mt-1">{{ form.email.errors }}</div>
+                {% endif %}
+              </div>
+              <div>
+                <label class="block text-gray-700 text-sm font-medium mb-1">Phone Number</label>
+                {{ form.phone }}
+                {% if form.phone.errors %}
+                <div class="text-red-500 text-xs mt-1">{{ form.phone.errors }}</div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <!-- Event Info -->
+          <div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Event Details</h3>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-gray-700 text-sm font-medium mb-1">Event Date</label>
+                {{ form.event_date }}
+                {% if form.event_date.errors %}
+                <div class="text-red-500 text-xs mt-1">{{ form.event_date.errors }}</div>
+                {% endif %}
+              </div>
+              <div>
+                <label class="block text-gray-700 text-sm font-medium mb-1">Event Time</label>
+                {{ form.event_time }}
+                {% if form.event_time.errors %}
+                <div class="text-red-500 text-xs mt-1">{{ form.event_time.errors }}</div>
+                {% endif %}
+              </div>
+
+
+
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div class="md:col-span-2">
+            <label class="block text-gray-700 text-sm font-medium mb-1">Special Requests</label>
+            {{ form.message }}
+          </div>
+        </div>
+
+        <div class="flex justify-center">
+          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg">
+            Confirm Booking
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 py-12">
+    <div class="max-w-7xl mx-auto px-10">
+      <div class="text-center">
+        <p class="text-gray-600">&copy; 2025 Lumora Events. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

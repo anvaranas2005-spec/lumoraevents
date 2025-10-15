@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Lumora Events</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;900&family=Work+Sans:wght@400;500;700;900&display=swap">
+  <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style>
+    body {
+      font-family: "Work Sans", "Noto Sans", sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="sticky top-0 z-10 bg-white border-b border-gray-200 px-4 sm:px-10 py-3">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="{% url 'home' %}" class="flex items-center gap-4">
+        <div class="w-4 h-4 text-gray-900">
+          <svg viewBox="0 0 48 48" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z"></path>
+          </svg>
+        </div>
+        <h2 class="text-gray-900 text-lg font-bold tracking-tight">Lumora Events</h2>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8">
+        <a class="text-gray-900 text-sm font-medium hover:text-blue-600 transition-colors" href="{% url 'user_dashboard' %}">Dashboard</a>
+        <a class="text-gray-900 text-sm font-medium hover:text-blue-600 transition-colors" href="{% url 'user_services' %}">Services</a>
+        <a class="text-gray-900 text-sm font-medium hover:text-blue-600 transition-colors" href="{% url 'user_about' %}">About</a>
+        <a class="text-blue-600 text-sm font-medium underline" href="{% url 'user_portfolio' %}">Portfolio</a>
+        <a class="text-gray-900 text-sm font-medium hover:text-blue-600 transition-colors" href="{% url 'submit_feedback' %}">Feedback</a>
+        <a href="{% url 'logout' %}" class="bg-blue-100 text-gray-900 hover:bg-blue-200 px-4 py-2 rounded-xl text-sm font-bold transition-colors">
+          Logout
+        </a>
+      </nav>
+
+      <!-- Mobile menu button -->
+      <button class="md:hidden text-gray-900">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow px-4 sm:px-10 py-8">
+    <div class="max-w-7xl mx-auto">
+      <!-- Portfolio Header -->
+      <div class="mb-8">
+        <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">Our Portfolio</h1>
+        <p class="text-gray-600 max-w-2xl">
+          Explore a selection of our most memorable events, showcasing our expertise in creating unique and unforgettable experiences.
+        </p>
+      </div>
+
+      <!-- Category Filters -->
+      <div class="flex flex-wrap gap-2 mb-8">
+        <a href="?category=all" class="px-4 py-2 rounded-xl text-sm {% if selected_category_slug == 'all' %}bg-blue-100 font-medium{% else %}bg-gray-100 hover:bg-gray-200{% endif %} transition-colors">
+          All Events
+        </a>
+        {% for category in categories %}
+        <a href="?category={{ category.slug }}" class="px-4 py-2 rounded-xl text-sm {% if selected_category_slug == category.slug %}bg-blue-100 font-medium{% else %}bg-gray-100 hover:bg-gray-200{% endif %} transition-colors">
+          {{ category.name }}
+        </a>
+        {% endfor %}
+      </div>
+
+      <!-- Featured Toggle -->
+      <div class="mb-8">
+        <a href="?featured={% if featured_only %}false{% else %}true{% endif %}{% if selected_category_slug != 'all' %}&category={{ selected_category_slug }}{% endif %}"
+           class="inline-flex items-center px-4 py-2 rounded-xl text-sm {% if featured_only %}bg-blue-100 font-medium{% else %}bg-gray-100 hover:bg-gray-200{% endif %} transition-colors">
+          <span>Featured Only</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Portfolio Grid -->
+      {% if gallery_items %}
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for item in gallery_items %}
+        <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+          <div class="aspect-w-16 aspect-h-9 overflow-hidden">
+            <img src="{{ item.image.url }}" alt="{{ item.title }}" class="w-full h-full object-cover">
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-medium text-gray-900 mb-1">{{ item.title }}</h3>
+            <p class="text-gray-600 text-sm mb-2">{{ item.description|truncatewords:20 }}</p>
+            <div class="flex items-center text-xs text-gray-500">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+              <span>{{ item.event_date|date:"F j, Y" }}</span>
+              <span class="mx-2">•</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              <span>{{ item.location }}</span>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="text-center py-12">
+        <p class="text-gray-500">No portfolio items available in this category.</p>
+      </div>
+      {% endif %}
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-200 py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col items-center">
+        <div class="flex flex-wrap justify-center gap-6 mb-6">
+          <a class="text-gray-600 hover:text-blue-600 transition-colors" href="{% url 'user_services' %}">Services</a>
+          <a class="text-gray-600 hover:text-blue-600 transition-colors" href="{% url 'user_about' %}">About</a>
+          <a class="text-gray-600 hover:text-blue-600 transition-colors" href="{% url 'user_PrivacyPolicy' %}">Privacy Policy</a>
+          <a class="text-gray-600 hover:text-blue-600 transition-colors" href="{% url 'user_TermsofService' %}">Terms of Service</a>
+        </div>
+
+        <div class="flex gap-4 mb-6">
+          <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 256 256">
+              <path d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Z"></path>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 256 256">
+              <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"></path>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 256 256">
+              <path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"></path>
+            </svg>
+          </a>
+        </div>
+
+        <p class="text-gray-600 text-sm">© 2025 Lumora Events. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

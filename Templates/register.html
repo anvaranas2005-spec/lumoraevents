@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lumora Events</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;900&family=Work+Sans:wght@400;500;700;900&display=swap">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style>
+        body {
+            font-family: "Work Sans", "Noto Sans", sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <header class="flex items-center justify-between border-b border-gray-200 px-10 py-3">
+        <div class="flex items-center gap-4">
+            <div class="size-4">
+                <svg viewBox="0 0 48 48" fill="currentColor">
+                    <path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z"></path>
+                </svg>
+            </div>
+            <h2 class="text-lg font-bold">Lumora Events</h2>
+        </div>
+        <nav class="flex items-center gap-8">
+            <a href="{% url 'home' %}" class="text-sm font-medium">Home</a>
+            <a href="{% url 'services' %}" class="text-sm font-medium">Services</a>
+            <a href="{% url 'about' %}" class="text-sm font-medium">About</a>
+            <a href="{% url 'portfolio' %}" class="text-sm font-medium">Portfolio</a>
+            <a href="{% url 'contact' %}" class="text-sm font-medium">Contact</a>
+        </nav>
+    </header>
+
+<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-md">
+        <div class="text-center">
+            <h2 class="mt-6 text-3xl font-extrabold text-gray-900">Create your account</h2>
+            {% if messages %}
+                {% for message in messages %}
+                <div class="mt-4 p-2 bg-red-100 text-red-700 rounded">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <form class="mt-8 space-y-6" method="POST" action="{% url 'register' %}">
+            {% csrf_token %}
+            <div class="rounded-md shadow-sm space-y-4">
+                <div>
+                    <label for="first_name" class="block text-sm font-medium text-gray-700">First Name</label>
+                    <input id="first_name" name="first_name" type="text" required
+                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="last_name" class="block text-sm font-medium text-gray-700">Last Name</label>
+                    <input id="last_name" name="last_name" type="text" required
+                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input id="email" name="email" type="email" required
+                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                    <input id="username" name="username" type="text" required
+                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input id="password" name="password" type="password" required
+                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </div>
+            </div>
+
+            <div>
+                <button type="submit"
+                        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    Register
+                </button>
+            </div>
+        </form>
+        <div class="text-center text-sm">
+            <p>Already have an account? <a href="{% url 'login' %}" class="font-medium text-blue-600 hover:text-blue-500">Sign in here</a></p>
+        </div>
+    </div>
+</div>
+
+    <!-- Footer -->
+    <footer class="py-10 bg-white">
+        <div class="max-w-4xl mx-auto px-5 text-center">
+            <div class="flex flex-wrap justify-center gap-6 mb-6">
+                <a href="{% url 'services' %}" class="text-gray-500">Services</a>
+                <a href="{% url 'about' %}" class="text-gray-500">About</a>
+                <a href="{% url 'contact' %}" class="text-gray-500">Contact</a>
+                <a href="#" class="text-gray-500">Privacy Policy</a>
+                <a href="{% url 'TermsofService' %}" class="text-gray-500">Terms of Service</a>
+            </div>
+            <div class="flex justify-center gap-4 mb-6">
+                <a href="#"><!-- Twitter Icon --></a>
+                <a href="#"><!-- Facebook Icon --></a>
+                <a href="#"><!-- Instagram Icon --></a>
+            </div>
+            <p class="text-gray-500">© 2025 Lumora Events. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+  <link rel="stylesheet" as="style" onload="this.rel='stylesheet'"
+    href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Work+Sans%3Awght%40400%3B500%3B700%3B900" />
+  <title>Lumora Events - Feedback</title>
+  <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+<body class="bg-gray-50" style='font-family: "Work Sans", "Noto Sans", sans-serif;'>
+  <div class="relative flex size-full min-h-screen flex-col bg-gray-50 group/design-root overflow-x-hidden">
+    <div class="layout-container flex h-full grow flex-col">
+      <!-- Navigation Bar -->
+      <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e9edf1] px-6 py-3 md:px-10">
+        <div class="flex items-center gap-4 text-[#101519]">
+          <a href="#" class="flex items-center gap-4">
+            <div class="size-4">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z"
+                  fill="currentColor"></path>
+              </svg>
+            </div>
+            <h2 class="text-[#101519] text-lg font-bold leading-tight tracking-[-0.015em]">Lumora Events</h2>
+          </a>
+        </div>
+
+        <div class="flex flex-1 justify-end gap-6 md:gap-8">
+          <nav class="hidden md:flex items-center gap-6 lg:gap-9">
+            <a class="text-[#101519] text-sm font-medium leading-normal hover:text-blue-600 transition-colors" href="{% url 'user_dashboard' %}">Dashboard</a>
+            <a class="text-[#101519] text-sm font-medium leading-normal hover:text-blue-600 transition-colors" href="{% url 'user_services' %}">Services</a>
+            <a class="text-[#101519] text-sm font-medium leading-normal hover:text-blue-600 transition-colors" href="{% url 'user_about' %}">About Us</a>
+            <a class="text-[#101519] text-sm font-medium leading-normal hover:text-blue-600 transition-colors" href="{% url 'user_portfolio' %}">Portfolio</a>
+            <a class="text-[#101519] text-sm font-medium leading-normal hover:text-blue-600 transition-colors" href="{% url 'submit_feedback' %}">Feedback</a>
+          </nav>
+
+          <button class="md:hidden text-[#101519]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+
+          <a href="{% url 'logout' %}" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#bfd6ec] text-[#101519] text-sm font-bold leading-normal tracking-[0.015em]">
+              <span class="truncate">Logout</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <div class="px-6 md:px-40 flex flex-1 justify-center py-8">
+        <div class="w-full max-w-md">
+          <!-- Feedback Form Card -->
+          <div class="bg-white rounded-xl shadow-md p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-[#101519] mb-6 text-center">Share Your Experience</h2>
+
+            <form method="POST" action="{% url 'submit_feedback' %}" id="feedbackForm">
+              {% csrf_token %}
+
+              <!-- Service Selection -->
+              <div class="mb-6">
+                <label for="service" class="block text-sm font-medium text-[#101519] mb-2">Select Experience Type</label>
+                <select id="service" name="service" required
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                  <option value="" disabled selected>Choose an option</option>
+                  <option value="portfolio_experience">Portfolio Experience</option>
+                  <option value="service_experience">Service Experience</option>
+                  <option value="overall_experience">Overall Experience</option>
+                </select>
+              </div>
+
+              <!-- Star Rating -->
+              <div class="mb-6">
+                <label class="block text-sm font-medium text-[#101519] mb-2">Rate Your Experience</label>
+                <div class="flex justify-center space-x-2 mb-2">
+                  <span class="text-3xl cursor-pointer text-gray-300 hover:text-yellow-400 transition-colors" data-value="1">★</span>
+                  <span class="text-3xl cursor-pointer text-gray-300 hover:text-yellow-400 transition-colors" data-value="2">★</span>
+                  <span class="text-3xl cursor-pointer text-gray-300 hover:text-yellow-400 transition-colors" data-value="3">★</span>
+                  <span class="text-3xl cursor-pointer text-gray-300 hover:text-yellow-400 transition-colors" data-value="4">★</span>
+                  <span class="text-3xl cursor-pointer text-gray-300 hover:text-yellow-400 transition-colors" data-value="5">★</span>
+                </div>
+                <input type="hidden" id="rating" name="rating" value="">
+                <p class="text-xs text-gray-500 text-center">Click on the stars to rate</p>
+              </div>
+
+              <!-- Comments -->
+              <div class="mb-6">
+                <label for="comments" class="block text-sm font-medium text-[#101519] mb-2">Your Feedback</label>
+                <textarea id="comments" name="comments" rows="4"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Share your thoughts with us..."></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-200">
+                Submit Feedback
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="flex justify-center bg-gray-100">
+        <div class="flex max-w-[960px] flex-1 flex-col">
+          <div class="flex flex-col gap-6 px-5 py-10 text-center">
+            <p class="text-[#5a748c] text-sm md:text-base font-normal leading-normal">© 2024 Lumora Events. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- JavaScript for Star Rating System and Form Submission -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Star Rating
+      const stars = document.querySelectorAll("[data-value]");
+      const ratingInput = document.getElementById("rating");
+
+      stars.forEach(star => {
+        star.addEventListener("click", function () {
+          const rating = this.getAttribute("data-value");
+          ratingInput.value = rating;
+
+          stars.forEach(s => {
+            s.classList.remove("text-yellow-400");
+            s.classList.add("text-gray-300");
+          });
+
+          for (let i = 0; i < rating; i++) {
+            stars[i].classList.remove("text-gray-300");
+            stars[i].classList.add("text-yellow-400");
+          }
+        });
+
+        // Hover effect
+        star.addEventListener("mouseover", function() {
+          const hoverValue = this.getAttribute("data-value");
+          for (let i = 0; i < hoverValue; i++) {
+            stars[i].classList.add("text-yellow-300");
+          }
+        });
+
+        star.addEventListener("mouseout", function() {
+          const currentRating = ratingInput.value;
+          stars.forEach(s => {
+            s.classList.remove("text-yellow-300");
+            if (currentRating) {
+              for (let i = 0; i < currentRating; i++) {
+                stars[i].classList.add("text-yellow-400");
+              }
+            }
+          });
+        });
+      });
+
+      // Form Submission with alert
+      const form = document.getElementById("feedbackForm");
+
+      form.addEventListener("submit", function(e) {
+        if (!ratingInput.value) {
+          e.preventDefault();
+          alert("Please select a rating before submitting");
+          return;
+        }
+
+        // Show success alert after form submission
+        alert("Feedback submitted successfully!");
+      });
+    });
+  </script>
+</body>
+</html>
